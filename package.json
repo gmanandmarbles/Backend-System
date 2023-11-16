@@ -1,0 +1,31 @@
+{
+  "name": "backend-system",
+  "version": "0.0.1",
+  "description": "A simple backend system to use in unity games.",
+  "main": "server.js",
+  "scripts": {
+    "test": "test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gmanandmarbles/Backend-System.git"
+  },
+  "keywords": [
+    "Backend",
+    "unity"
+  ],
+  "author": "Gmanandmarbles",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/gmanandmarbles/Backend-System/issues"
+  },
+  "homepage": "https://github.com/gmanandmarbles/Backend-System#readme",
+  "dependencies": {
+    "axios": "^1.6.2",
+    "bcrypt": "^5.1.1",
+    "express": "^4.18.2",
+    "fs": "^0.0.1-security",
+    "sqlite3": "^5.1.6",
+    "uuid": "^9.0.1"
+  }
+}
