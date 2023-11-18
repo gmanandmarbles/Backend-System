@@ -39,11 +39,11 @@ public class guestLogin : MonoBehaviour
                 // Parse the response JSON
                 GuestResponse response = JsonUtility.FromJson<GuestResponse>(www.downloadHandler.text);
 
-                // Save the guestID to PlayerPrefs
-                PlayerPrefs.SetString("guestID", response.guestId);
+                // Save the ID to PlayerPrefs
+                PlayerPrefs.SetString("ID", response.id);
                 PlayerPrefs.Save();
 
-                Debug.Log("GuestID: " + response.guestId);
+                Debug.Log("GuestID: " + response.id);
             }
             else
             {

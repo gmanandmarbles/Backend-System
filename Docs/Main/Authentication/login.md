@@ -57,8 +57,8 @@ public class userLogin : MonoBehaviour
                 // Parse the response JSON
                 LoginResponse response = JsonUtility.FromJson<LoginResponse>(www.downloadHandler.text);
 
-                // Save the userID to PlayerPrefs
-                PlayerPrefs.SetString("userID", response.userId);
+                // Save the id to PlayerPrefs
+                PlayerPrefs.SetString("ID", response.userId);
                 PlayerPrefs.Save();
 
                 Debug.Log("UserID: " + response.userId);

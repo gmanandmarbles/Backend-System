@@ -23,42 +23,42 @@ module.exports = function (app) {
     console.log('Received guest user registration request:', req.body);
 
     try {
-      // Read the existing users from the JSON file
+      // Read the user data from the existing file.
       const usersData = fs.readFileSync('./data/users.json', 'utf8');
       const users = JSON.parse(usersData);
 
-      // Generate a random 4-character alphanumeric username for guest user
+      // Make a random 4 character username
       const randomUsername = generateRandomUsername(users);
 
-      // Default password is "1234"
+      // Default password is 1234
       const defaultPassword = '1234';
 
-      // Create a new guest user with the random username and default password
+      // create a new guest user with random username and password.
       const newGuestUser = {
         username: randomUsername,
         password: defaultPassword,
-        guest: true, // Indicate that this is a guest user
+        guest: true, // Add a flag in the json to mark as guest user.
       };
 
-      // Hash the default password
+      // Encrypt password
       const salt = await bcrypt.genSalt(10);
       const hashedPassword = await bcrypt.hash(newGuestUser.password, salt);
 
-      // Update the password with the hashed version
+      // Save as encrypted password.
       newGuestUser.password = hashedPassword;
 
-      // Generate a unique ID for the new guest user
+      // Make an ID.
       newGuestUser.id = uuidv4().split('-')[0];
 
-      // Add the new guest user to the users array
+      // Save the user data.
       users.push(newGuestUser);
 
-      // Save the updated users array to the JSON file
+      // Send to JSON file.
       fs.writeFile('./data/users.json', JSON.stringify(users, null, 2), (err) => {
         if (err) {
           console.error('Error writing users file:', err);
 
-          // Report the error
+          // error report system
           reportError(err);
 
           return res.status(500).json({ error: 'Internal server error' });
@@ -71,7 +71,7 @@ module.exports = function (app) {
     } catch (error) {
       console.error('Error:', error);
 
-      // Report the error
+      // error report
       reportError(error);
 
       res.status(500).json({ error: 'Internal server error', fullError: error.message });
@@ -83,7 +83,7 @@ module.exports = function (app) {
     const newUser = req.body;
 
     try {
-      // Read the existing users from the JSON file
+      // read users.
       const usersData = fs.readFileSync('./data/users.json', 'utf8');
       const users = JSON.parse(usersData);
 
@@ -127,7 +127,7 @@ module.exports = function (app) {
 
       console.log('User registration successful:', newUser);
 
-      res.json({ message: 'User registration successful' });
+      res.json({ message: 'User registration successful', newUser });
     } catch (error) {
       console.error('Error:', error);
 
