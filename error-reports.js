@@ -15,7 +15,7 @@ app.post('/api/error-report', (req, res) => {
 
       // Create a directory based on the current date
       const currentDate = new Date().toISOString().split('T')[0];
-      const errorReportsDir = path.join(__dirname, 'errorreports', currentDate);
+      const errorReportsDir = path.join(__dirname, './errorreports', currentDate);
   
       // Create the directory if it doesn't exist
       if (!fs.existsSync(errorReportsDir)) {

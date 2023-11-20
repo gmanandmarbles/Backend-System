@@ -4,6 +4,7 @@ const express = require('express');
 //Importing endpoint files.
 const authentication = require('./auth.js');
 const errorReports = require('./error-reports.js');
+const playerPrefs = require('./playerPrefs.js');
 
 //Setting up the port and the express app.
 const app = express();
@@ -16,6 +17,7 @@ app.use(express.json());
 // Connect the other files.
 authentication(app);
 errorReports(app);
+playerPrefs(app);
 
 app.listen(port, () => {
   console.log(`Server is listening on port ${port}`);

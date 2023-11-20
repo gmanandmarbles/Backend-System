@@ -285,5 +285,47 @@
     "password": "$2b$10$kXPVOIskPl57ingtCA1YHeZY0FZ1szolVms3KoUo08DjBL1v494/O",
     "guest": true,
     "id": "ff770f46"
+  },
+  {
+    "username": "S7IH",
+    "password": "$2b$10$i1/bo2YBThQLG810g9dA2OwKi0qKtfaOYYKV17OlMl5Au2AkHfkqe",
+    "guest": true,
+    "id": "58b812ff"
+  },
+  {
+    "username": "2RSS",
+    "password": "$2b$10$BuxpII4QvhOzZmPdYniVQeaotgulwCMSVnSgP0Iw0YrH8fCezHBoS",
+    "guest": true,
+    "id": "7c2bb918"
+  },
+  {
+    "username": "1XAB",
+    "password": "$2b$10$hTxfLm/0q4oHBv.VtaidQ.M/kVQOb/TAx8m8Twv8Ex24rUiT9eVg6",
+    "guest": true,
+    "id": "d5d3f1ea"
+  },
+  {
+    "username": "FURS",
+    "password": "$2b$10$G9H2/VT7AIQ1vZfW6A.UZurPyB5z.JVhT9WC0t/VMxMtwBkdJAmbm",
+    "guest": true,
+    "id": "452c069b"
+  },
+  {
+    "username": "HTUX",
+    "password": "$2b$10$KO.Fgt1sMDv2a2TVbxygjeH0wlGPuEOZzVefTYqfQs3S74AjZI76G",
+    "guest": true,
+    "id": "40a3a11e"
+  },
+  {
+    "username": "VMIF",
+    "password": "$2b$10$L.TQO/L.G8HmDf4w/hksUuWYSfR3zwrX.DgkWGzZK0OCPm8N2GM0m",
+    "guest": true,
+    "id": "a8c13a34"
+  },
+  {
+    "username": "B655",
+    "password": "$2b$10$izOdbzjGli5QdNxRqq03ruvi2vjZK/JU2WLV4D21XVMf7SooGiWKa",
+    "guest": true,
+    "id": "8a3353dd"
   }
 ]
