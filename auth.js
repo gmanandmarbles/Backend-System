@@ -4,20 +4,27 @@ const { v4: uuidv4 } = require('uuid');
 
 module.exports = function (app) {
   let users = [];
-  function generateRandomUsername(users) {
+  function generateRandomUsername(users, maxAttempts = 5) {
     const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
     let randomUsername = '';
-    
-    do {
-    randomUsername = '';
-    for (let i = 0; i < 4; i++) {
-    const randomIndex = Math.floor(Math.random() * characters.length);
-    randomUsername += characters.charAt(randomIndex);
+    let attempts = 0;
+  
+    while (attempts < maxAttempts) {
+      randomUsername = '';
+      for (let i = 0; i < 4; i++) {
+        const randomIndex = Math.floor(Math.random() * characters.length);
+        randomUsername += characters.charAt(randomIndex);
+      }
+  
+      if (!users.some((user) => user.username === randomUsername)) {
+        return randomUsername;
+      }
+  
+      attempts++;
     }
-    } while (users.some((user) => user.username === randomUsername));
-    
-    return randomUsername;
-    }
+  
+    throw new Error('Unable to generate a unique username after 5 attempts');
+  }
 
   app.post('/api/guest', async (req, res) => {
     console.log('Received guest user registration request:', req.body);

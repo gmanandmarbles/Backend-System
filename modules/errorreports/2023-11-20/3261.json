@@ -1,6 +1,0 @@
-{
-  "testName": "Invalid Password Login",
-  "error": {
-    "error": "Invalid password"
-  }
-}

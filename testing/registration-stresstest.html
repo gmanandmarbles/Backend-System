@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Stress Test Website</title>
+</head>
+<body>
+  <h1>Stress Test Website</h1>
+  <button onclick="runStressTest()">Run Stress Test</button>
+  <div id="result"></div>
+
+  <script>
+    async function generateRandomUsername() {
+      const array = new Uint8Array(8);
+      window.crypto.getRandomValues(array);
+      return Array.from(array, (byte) => byte.toString(16)).join('');
+    }
+
+    async function registerUser(username) {
+      try {
+        const response = await fetch('http://localhost:3000/api/guest', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            username: username,
+            password: '1234', // Default password
+          }),
+        });
+
+        const data = await response.json();
+        return { success: true, data };
+      } catch (error) {
+        return { success: false, error: error.message || 'Registration failed' };
+      }
+    }
+
+    async function runStressTest() {
+      const resultDiv = document.getElementById('result');
+      resultDiv.innerHTML = ''; // Clear previous results
+
+      const numberOfUsers = 100; // Change this to the desired number of test users
+
+      for (let i = 0; i < numberOfUsers; i++) {
+        const randomUsername = await generateRandomUsername();
+        const registrationResult = await registerUser(randomUsername);
+
+        const resultMessage = document.createElement('p');
+        resultMessage.textContent = `User ${i + 1}: ${registrationResult.success ? 'Success' : 'Failure'} - ${registrationResult.success ? 'User ID: ' + registrationResult.data.newGuestUser.id : registrationResult.error}`;
+        resultDiv.appendChild(resultMessage);
+      }
+
+      console.log(`Stress test completed for ${numberOfUsers} users.`);
+    }
+  </script>
+</body>
+</html>

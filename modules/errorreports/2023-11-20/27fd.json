@@ -1,6 +1,0 @@
-{
-  "testName": "Non-existent User Login",
-  "error": {
-    "error": "User not found"
-  }
-}

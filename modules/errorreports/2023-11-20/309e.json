@@ -1,4 +1,0 @@
-{
-  "errorMessage": "Invalid password",
-  "stackTrace": "Error: Invalid password\n    at C:\\Users\\griff\\OneDrive\\Desktop\\2024 Game\\Backend System\\Backend-System\\modules\\auth.js:165:19"
-}
