@@ -131,3 +131,6 @@ dist
 
 #error reports
 errorreports/*
+
+#firebase key
+firebasekey.json
