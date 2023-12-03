@@ -1,25 +1,39 @@
 const axios = require('axios');
+const cliProgress = require('cli-progress');
 
 // Change the base URL to match your server's address and port
-const baseURL = 'http://localhost:3000/api';
+const baseURL = 'http://10.0.0.246:3000/api';
 
-const totalTests = 5000000000; // Total number of tests in your script
+const totalTests = 160000000; // Total number of tests in your script
 
 async function testEndpoints() {
-  for (let i = 0; i < totalTests; i++) {
-    try {
-      // Test guest user registration
-      await axios.post(`${baseURL}/guest`);
+  // create a new progress bar instance and use shades_classic theme
+  const progressBar = new cliProgress.SingleBar({}, cliProgress.Presets.shades_classic);
 
-      // Calculate and display the percentage of completion
-      const percentage = ((i + 1) / totalTests) * 100;
-      console.log(`Test ${i + 1} completed. Progress: ${percentage.toFixed(2)}%`);
-    } catch (error) {
-      handleTestError(`Test ${i + 1}`, error);
-    }
+  // start the progress bar with a total value of totalTests and start value of 0
+  progressBar.start(totalTests, 0);
+
+  for (let i = 0; i < totalTests; i++) {
+    // Execute the test for each endpoint sequentially
+    await testEndpoint(i + 1, progressBar);
   }
 
+  // stop the progress bar
+  progressBar.stop();
+
   console.log('All tests completed!');
+}
+
+async function testEndpoint(testNumber, progressBar) {
+  try {
+    // Test guest user registration
+    await axios.post(`${baseURL}/guest`);
+
+    // Increment the progress bar
+    progressBar.increment();
+  } catch (error) {
+    handleTestError(`Test ${testNumber}`, error);
+  }
 }
 
 async function handleTestError(testName, error) {
