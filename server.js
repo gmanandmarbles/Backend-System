@@ -5,6 +5,7 @@ const express = require('express');
 const authentication = require('./auth.js');
 const errorReports = require('./error-reports.js');
 const playerPrefs = require('./playerPrefs.js');
+const errorSearching = require('./errorSearching.js');
 
 //Setting up the port and the express app.
 const app = express();
@@ -18,6 +19,7 @@ app.use(express.json());
 authentication(app);
 errorReports(app);
 playerPrefs(app);
+errorSearching(app);
 
 app.listen(port, () => {
   console.log(`Server is listening on port ${port}`);
