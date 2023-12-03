@@ -103,7 +103,7 @@ module.exports = function (app) {
           </script>
         </head>
         <body>
-          <h1>File List</h1>
+          <h1>Error searching endpoint.</h1>
           <ul>${dateList}</ul>
         </body>
       </html>
