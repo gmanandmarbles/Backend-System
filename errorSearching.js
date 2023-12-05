@@ -45,69 +45,88 @@ module.exports = function (app) {
     }).join('');
     // Send the HTML response
     res.send(`
-      <!DOCTYPE html>
-      <html>
-        <head>
-          <title>File List</title>
-          <style>
-            body {
-              font-family: Arial, sans-serif;
-              margin: 20px;
-            }
-            h1 {
-              color: #333;
-            }
-            ul {
-              list-style: none;
-              padding: 0;
-            }
-            li {
-              margin-bottom: 5px;
-            }
-            a {
-              color: #0066cc;
-              text-decoration: none;
-            }
-            a:hover {
-              text-decoration: underline;
-            }
-            .collapsible {
-              cursor: pointer;
-              user-select: none;
-            }
-            .content {
-              display: none;
-              padding-left: 20px;
-            }
-            .active {
-              display: block;
-            }
-          </style>
-          <script>
-            document.addEventListener("DOMContentLoaded", function() {
-              var coll = document.getElementsByClassName("collapsible");
-              var i;
-            
-              for (i = 0; i < coll.length; i++) {
-                coll[i].addEventListener("click", function() {
-                  this.classList.toggle("active");
-                  var content = this.nextElementSibling;
-                  if (content.style.display === "block") {
-                    content.style.display = "none";
-                  } else {
-                    content.style.display = "block";
-                  }
-                });
+  <!DOCTYPE html>
+  <html>
+    <head>
+      <title>File List</title>
+      <style>
+        body {
+          font-family: Arial, sans-serif;
+          margin: 20px;
+        }
+        h1 {
+          color: #333;
+        }
+        label {
+          margin-right: 10px;
+        }
+        ul {
+          list-style: none;
+          padding: 0;
+        }
+        li {
+          margin-bottom: 5px;
+        }
+        a {
+          color: #0066cc;
+          text-decoration: none;
+        }
+        a:hover {
+          text-decoration: underline;
+        }
+        .collapsible {
+          cursor: pointer;
+          user-select: none;
+        }
+        .content {
+          display: none;
+          padding-left: 20px;
+        }
+        .active {
+          display: block;
+        }
+      </style>
+      <script>
+        document.addEventListener("DOMContentLoaded", function() {
+          var coll = document.getElementsByClassName("collapsible");
+          var i;
+
+          for (i = 0; i < coll.length; i++) {
+            coll[i].addEventListener("click", function() {
+              this.classList.toggle("active");
+              var content = this.nextElementSibling;
+              if (content.style.display === "block") {
+                content.style.display = "none";
+              } else {
+                content.style.display = "block";
               }
             });
-          </script>
-        </head>
-        <body>
-          <h1>Error searching endpoint.</h1>
-          <ul>${dateList}</ul>
-        </body>
-      </html>
-    `);
+          }
+
+          // Search functionality
+          document.getElementById("searchBtn").addEventListener("click", function() {
+            var errorId = document.getElementById("errorId").value;
+            var fileLink = document.querySelector('a[href="/json/' + errorId + '"]');
+            
+            if (fileLink) {
+              // Scroll to the found link or handle it as needed
+              fileLink.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            } else {
+              alert("Function not implemented properly yet!");
+            }
+          });
+        });
+      </script>
+    </head>
+    <body>
+      <h1>Error searching endpoint.</h1>
+      <label for="errorId">Search by Error ID:</label>
+      <input type="text" id="errorId" name="errorId">
+      <button id="searchBtn">Search</button>
+      <ul>${dateList}</ul>
+    </body>
+  </html>
+`);
   });
 
   app.get('/json/:date/:filename', (req, res) => {

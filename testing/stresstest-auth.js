@@ -2,9 +2,9 @@ const axios = require('axios');
 const cliProgress = require('cli-progress');
 
 // Change the base URL to match your server's address and port
-const baseURL = 'http://10.0.0.246:3000/api';
+const baseURL = 'http://localhost:3000/api';
 
-const totalTests = 160000000; // Total number of tests in your script
+const totalTests = 1600; // Total number of tests in your script
 
 async function testEndpoints() {
   // create a new progress bar instance and use shades_classic theme

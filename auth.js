@@ -33,46 +33,52 @@ module.exports = function (app) {
 
     app.post('/api/guest', async (req, res) => {
         console.log('Received guest user registration request:', req.body);
-
+    
         try {
             // Make a random 4 character username
             const randomUsername = generateRandomUsername(users);
-
+    
+            // Check if the username (ID) already exists in Firestore
+            const existingUserQuery = await usersCollection.doc(randomUsername).get();
+            if (existingUserQuery.exists) {
+                console.log('Username already exists');
+    
+                return res.status(409).json({ error: 'Username already exists' });
+            }
+    
             // Default password is 1234
             const defaultPassword = '1234';
-
+    
             // create a new guest user with a random username and password.
             const newGuestUser = {
                 username: randomUsername,
                 password: defaultPassword,
                 guest: true, // Add a flag in Firestore to mark as a guest user.
             };
-
+    
             // Encrypt password
             const salt = await bcrypt.genSalt(10);
             const hashedPassword = await bcrypt.hash(newGuestUser.password, salt);
-
+    
             // Save as encrypted password.
             newGuestUser.password = hashedPassword;
-
-            // Use the username as the document ID
-            newGuestUser.id = newGuestUser.username;
-
+    
             // Save the user data to Firestore
-            await usersCollection.doc(newGuestUser.id).set(newGuestUser);
-
+            await usersCollection.doc(newGuestUser.username).set(newGuestUser);
+    
             console.log('Guest user registration successful:', newGuestUser);
-
+    
             res.json({ message: 'Guest user registration successful', newGuestUser });
         } catch (error) {
             console.error('Error:', error);
-
+    
             // error report
             reportError(error);
-
+    
             res.status(500).json({ error: 'Internal server error', fullError: error.message });
         }
     });
+    
 
     app.post('/api/users', async (req, res) => {
         console.log('Received user registration request:', req.body);

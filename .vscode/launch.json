@@ -1,0 +1,10 @@
+{
+    "configurations": [
+        {
+            "type": "chrome",
+            "name": "http://10.0.0.23:8000/Backend-System/",
+            "request": "launch",
+            "url": "http://10.0.0.23:8000/Backend-System/"
+        }
+    ]
+}
