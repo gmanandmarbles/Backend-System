@@ -7,6 +7,7 @@ const errorReports = require('./error-reports.js');
 const playerPrefs = require('./playerPrefs.js');
 const errorSearching = require('./errorSearching.js');
 const gameManager = require('./gameManager.js');
+const websocketManager = require('./websocket.js');
 
 //Setting up the port and the express app.
 const app = express();
@@ -18,6 +19,7 @@ app.use(express.json());
 
 // Connect the other files.
 authentication(app);
+websocketManager(app);
 errorReports(app);
 playerPrefs(app);
 errorSearching(app);

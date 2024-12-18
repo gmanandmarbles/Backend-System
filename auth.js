@@ -30,6 +30,41 @@ module.exports = function (app) {
 
         throw new Error('Unable to generate a unique username after 5 attempts');
     }
+    // Add this new endpoint to your existing routes:
+
+app.get('/api/users/id', async (req, res) => {
+    console.log('Received request for user ID by username:', req.query.username);
+    
+    const { username } = req.query;
+
+    if (!username) {
+        return res.status(400).json({ error: 'Username is required' });
+    }
+
+    try {
+        // Check if the user exists
+        const userQuery = await usersCollection.where('username', '==', username).limit(1).get();
+        if (userQuery.empty) {
+            console.log('User not found');
+
+            return res.status(404).json({ error: 'User not found' });
+        }
+
+        // Get the user data
+        const user = userQuery.docs[0].data();
+        console.log('User found:', user);
+
+        // Return the user ID
+        return res.status(200).json({ userId: user.id });
+    } catch (error) {
+        console.error('Error:', error);
+
+        // Report the error
+        reportError(error);
+
+        res.status(500).json({ error: 'Internal server error', fullError: error.message });
+    }
+});
 
     app.post('/api/guest', async (req, res) => {
         console.log('Received guest user registration request:', req.body);
