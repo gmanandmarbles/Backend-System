@@ -6,6 +6,7 @@ const path = require('path');
 const rootDirectoryPath = path.join(__dirname, 'errorreports');
 
 module.exports = function (app) {
+  console.log("Error Searching Initialized");
   // Serve static files from the specified directory
   app.use(express.static(rootDirectoryPath));
 

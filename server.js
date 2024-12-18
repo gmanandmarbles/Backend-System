@@ -24,5 +24,6 @@ errorSearching(app);
 gameManager(app);
 
 app.listen(port, () => {
+  console.log("Server Initialized");
   console.log(`Server is listening on port ${port}`);
 });
