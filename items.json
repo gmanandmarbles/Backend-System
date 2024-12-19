@@ -1,0 +1,50 @@
+[
+  {
+    "name": "Sword of Valor",
+    "rarity": "Legendary",
+    "imageUrl": "https://example.com/images/sword_of_valor.png",
+    "description": "A legendary sword forged by ancient masters.",
+    "stats": {
+      "attack": 100,
+      "defense": 50
+    },
+    "createdAt": {},
+    "itemId": "b510836d-af70-49c7-ba29-4c543b909046"
+  },
+  {
+    "name": "Sword of Valor",
+    "rarity": "Legendary",
+    "imageUrl": "https://example.com/images/sword_of_valor.png",
+    "description": "A legendary sword forged by ancient masters.",
+    "stats": {
+      "attack": 100,
+      "defense": 50
+    },
+    "createdAt": {},
+    "itemId": "0bc42a73-6750-4937-8992-6895372fc5e7"
+  },
+  {
+    "name": "Sword of Valor2",
+    "rarity": "Legendary",
+    "imageUrl": "https://example.com/images/sword_of_valor.png",
+    "description": "A legendary sword forged by ancient masters.",
+    "stats": {
+      "attack": 100,
+      "defense": 50
+    },
+    "createdAt": {},
+    "itemId": "1ee4e90d-b93b-41c0-9a88-9664e6e8b8b2"
+  },
+  {
+    "name": "Sword of Valor3",
+    "rarity": "Legendary",
+    "imageUrl": "https://example.com/images/sword_of_valor.png",
+    "description": "A legendary sword forged by ancient masters.",
+    "stats": {
+      "attack": 100,
+      "defense": 50
+    },
+    "createdAt": {},
+    "itemId": "131aafee-7bfa-4c52-b2a1-c31a628447f3"
+  }
+]
